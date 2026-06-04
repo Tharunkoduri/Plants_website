@@ -1,0 +1,31 @@
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background: #198754;
+  padding: 12px 0;
+}
+
+.ticker {
+  white-space: nowrap;
+  display: flex;
+  animation: ticker 12s linear infinite;
+}
+
+.ticker span {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  flex-shrink: 0;
+  padding-right: 0;
+  white-space: nowrap;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}

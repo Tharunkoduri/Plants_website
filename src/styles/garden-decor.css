@@ -1,0 +1,31 @@
+.decor-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.decor-img:hover{
+  transform: scale(1.03);
+}
+
+@media(max-width:576px){
+  .decor-img{
+    width: 100%;;
+  }
+}
+
+
+@media(min-width:577px) and (max-width:991px){
+  .decor-img{
+    width: 100%;
+
+  }
+}
+
+@media(min-width:992px){
+  .decor-img{
+    width: 100%;
+  }
+}

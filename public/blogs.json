@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Best Indoor Plants for Beginners",
+    "author": "Garden Expert",
+    "date": "2026-06-01",
+    "image": "https://www.ugaoo.com/cdn/shop/articles/apartment_asthetics.jpg",
+    "category": "Indoor Plants",
+    "description": "Discover easy-to-care indoor plants that thrive in homes and offices.",
+    "content": "Indoor plants like Snake Plant, Pothos, and ZZ Plant require minimal maintenance and improve air quality."
+  },
+  {
+    "id": 2,
+    "title": "How to Care for Succulents",
+    "author": "Plant Care Team",
+    "date": "2026-05-28",
+    "image": "https://www.ugaoo.com/cdn/shop/articles/antivalentines.jpg",
+    "category": "Succulents",
+    "description": "Learn the essential watering and sunlight requirements for succulents.",
+    "content": "Succulents store water in their leaves and prefer well-draining soil with plenty of sunlight."
+  },
+  {
+    "id": 3,
+    "title": "Top 10 Air Purifying Plants",
+    "author": "Green Living",
+    "date": "2026-05-25",
+    "image": "https://www.ugaoo.com/cdn/shop/articles/rented_apartment_plant.jpg",
+    "category": "Air Purifying",
+    "description": "Plants that help improve indoor air quality naturally.",
+    "content": "Peace Lily, Spider Plant, and Areca Palm are excellent choices for cleaner indoor air."
+  },
+  {
+    "id": 4,
+    "title": "Monsoon Gardening Tips",
+    "author": "Garden Expert",
+    "date": "2026-05-20",
+    "image": "https://cdn.shopify.com/s/files/1/0579/7924/0580/files/lhar-capili-eIRA0t57k0k-unsplash.jpg",
+    "category": "Seasonal Gardening",
+    "description": "Prepare your garden for the rainy season.",
+    "content": "Ensure proper drainage, trim excess foliage, and monitor pests during monsoon."
+  },
+  {
+    "id": 5,
+    "title": "Benefits of Growing Herbs at Home",
+    "author": "Kitchen Garden Team",
+    "date": "2026-05-15",
+    "image": "https://cdn.shopify.com/s/files/1/0579/7924/0580/files/apartment_asthestics.jpg",
+    "category": "Herbs",
+    "description": "Fresh herbs add flavor to food and are easy to grow.",
+    "content": "Mint, Basil, and Coriander can be grown in small pots with adequate sunlight."
+  },
+  {
+    "id": 6,
+    "title": "Guide to Watering Houseplants",
+    "author": "Plant Care Team",
+    "date": "2026-05-10",
+    "image": "https://www.ugaoo.com/cdn/shop/files/Premium_Garden_Watering_Can_For_Plants_5_Litre.jpg",
+    "category": "Plant Care",
+    "description": "Avoid overwatering and underwatering your plants.",
+    "content": "Check soil moisture before watering and ensure pots have drainage holes."
+  },
+  {
+    "id":7,
+    "title":"Creative Garden Decor Ideas",
+    "author":"Garden Decor Team",
+    "date":"2026-06-03",
+    "image":"https://www.ugaoo.com/cdn/shop/articles/apartment_asthetics.jpg",
+    "category":"Garden Decor",
+    "description":"Transform your garden with these unique decor ideas.",
+    "content":"These creative garden decor ideas will help you create a beautiful and inviting outdoor space." 
+   },
+   {
+    "id":8,
+    "title":"How to Create a Vertical Garden",
+    "author":"Garden Expert",
+    "date":"2026-06-03",
+    "image":"https://www.ugaoo.com/cdn/shop/articles/rented_apartment_plant.jpg",
+    "category":"Vertical Gardening",
+    "description":"Maximize space with a vertical garden.",
+    "content":"Learn how to create a vertical garden using wall-mounted planters and trellises."
+   },
+   {
+    "id":9,
+    "title":"Best Plants for Balcony Gardens",
+    "author":"Balcony Garden Team",
+    "date":"2026-06-03",
+    "image":"https://cdn.shopify.com/s/files/1/0579/7924/0580/files/apartment_asthestics.jpg",
+    "category":"Balcony Gardening",
+    "description":"Discover the best plants for your balcony garden.",
+    "content":"These plants are perfect for balcony gardens, thriving in containers with adequate sunlight and water."
+   }
+]

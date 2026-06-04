@@ -1,0 +1,30 @@
+.blog-card {
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.blog-card img {
+  height: 300px;
+}
+
+.card{
+  height: 100%;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-title {
+  min-height: 60px;
+}
+
