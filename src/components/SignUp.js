@@ -84,15 +84,16 @@ export function SignUp() {
           <div className="row">
             <h4 className="text-center fw-bold ">SIGNUP</h4>
             <p className="text-center mb-4">Please fill all the details to create your account</p>
-            {error && <div className="alert alert-danger">{error}</div>}
+            {error && (
+              <div className="alert alert-danger">{error}</div>
+            )}
             <div className="col-md-6 mb-3">
               <input
                 type="text"
                 className="form-control custom-input"
                 placeholder="Full Name"
                 value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
+                onChange={(e) => setFullName(e.target.value)} />
             </div>
 
             <div className="col-md-6 mb-3">
@@ -101,8 +102,7 @@ export function SignUp() {
                 className="form-control custom-input"
                 placeholder="Email Address"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+                onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             <div className="col-md-12 mb-3">
@@ -111,8 +111,7 @@ export function SignUp() {
                 className="form-control custom-input"
                 placeholder="Phone Number"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
+                onChange={(e) => setPhone(e.target.value)} />
             </div>
 
             <div className="col-md-12 mb-3">
@@ -121,8 +120,7 @@ export function SignUp() {
                 className="form-control custom-input"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+                onChange={(e) => setPassword(e.target.value)} />
             </div>
 
             <div className="col-md-12 mb-3">
@@ -131,8 +129,7 @@ export function SignUp() {
                 className="form-control custom-input"
                 placeholder="Confirm Password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+                onChange={(e) => setConfirmPassword(e.target.value)} />
             </div>
           </div>
           <div className="form-check text-start mb-3">
@@ -141,8 +138,7 @@ export function SignUp() {
               className="form-check-input"
               id="terms"
               checked={acceptTerms}
-              onChange={(e) => setAcceptTerms(e.target.checked)}
-            />
+              onChange={(e) => setAcceptTerms(e.target.checked)} />
 
             <label className="form-check-label" htmlFor="terms">
               I agree to the
@@ -158,8 +154,7 @@ export function SignUp() {
           <button
             type="submit"
             className="btn btn-primary w-100 py-2 mb-3"
-            onClick={handleSignup}
-          >
+            onClick={handleSignup}>
             Sign Up
           </button>
           <p className="text-center mb-0">
