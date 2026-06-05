@@ -82,6 +82,7 @@ export function SignUp() {
 
         <div className="right-box">
           <div className="row">
+            
             <h4 className="text-center fw-bold ">SIGNUP</h4>
             <p className="text-center mb-4">Please fill all the details to create your account</p>
             {error && (
@@ -161,13 +162,11 @@ export function SignUp() {
             Already have an account?
             <Link
               to="/signin"
-              className="text-primary text-decoration-none ms-1 fw-semibold"
-            >
+              className="text-primary text-decoration-none ms-1 fw-semibold">
               Sign In
             </Link>
           </p>
         </div>
-
       </div>
     </div>
   )

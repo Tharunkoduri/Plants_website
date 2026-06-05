@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/signin.css";
+import { SignInForm } from "./SignInForm";
 
 export function SignIn() {
   const [email, setEmail] = useState('');
@@ -18,13 +19,23 @@ export function SignIn() {
     }
 
     const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-    const user = storedUsers.find((user) => user.email === email && user.password === password);
 
-    if (!user) {
-      setError("Invalid email or password");
+    const registeredUser =storedUsers.find((user)=>user.email === email);
+    
+    if(!registeredUser){
+      setError("This email is not registered. Please register to continue");
       return;
     }
 
+    if(registeredUser.password !== password){
+      setError("Invalid Password");
+      return;
+    }
+
+    if(registeredUser.email !== email){
+      setError("Invalid Email");
+      return;
+    }
     navigate("/home");
   }
   return (
@@ -62,54 +73,7 @@ export function SignIn() {
           Welcome back! Please sign in to your account
         </p>
 
-        {error && (
-          <div className="alert alert-danger py-2">
-            {error}
-          </div>
-        )}
-
-        <div className="mb-3">
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control custom-input"
-          />
-        </div>
-
-        <div className="mb-3">
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="form-control custom-input"
-          />
-        </div>
-
-        <div className="text-end mb-3">
-          <Link
-            to="/forgot-password"
-            className="text-decoration-none">
-            Forgot Password?
-          </Link>
-        </div>
-
-        <button
-          type="submit"
-          className="btn btn-primary w-100 py-2">
-          Sign In
-        </button>
-
-        <p className="text-center mt-3">
-          Don't have an account?
-          <Link
-            to="/"
-            className="text-primary text-decoration-none ms-1">
-            Sign Up
-          </Link>
-        </p>
+       <SignInForm />
       </form>
     </div>
   </div>

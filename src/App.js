@@ -7,6 +7,7 @@ import { FashionStore } from "./components/fashion-store";
 import { TrendingGardening } from "./components/trending-gardening";
 import { Cart } from "./components/cart";
 import BlogPage from "./components/blogs";
+import { Dashboard } from "./components/dashboard";
 
 function App(){
   return(
@@ -19,6 +20,7 @@ function App(){
     <Route path="/fashionstore" element={< FashionStore/>} />
     <Route path="/trendinggardening" element={< TrendingGardening />} />
     <Route path="/blogs" element={< BlogPage />} />
+    <Route path="/dashboard" element={< Dashboard />} />
    </Routes>
   )
 }

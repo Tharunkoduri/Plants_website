@@ -99,7 +99,6 @@ export function TrendingGardening() {
                   />
                 </div>
               </div>
-
             </div>
           </div>
 

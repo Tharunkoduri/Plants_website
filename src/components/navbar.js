@@ -4,12 +4,18 @@ import "../styles/home.css";
 import { CartContext } from "../context/cart-context";
 import { Link } from "react-router-dom";
 import { SearchContext } from "../context/search-context";
+import { SignInForm } from "./SignInForm";
 
 export function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [openSubMenu, setOpenSubMenu] = useState(null);
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
   const { cart } = useContext(CartContext);
+  const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("loggedInUser")));
+
+
+
   return (
     <nav className="bg-white shadow-sm ">
       <div className="container-fluid px-4 py-3">
@@ -50,13 +56,27 @@ export function Navbar() {
               Select Delivery Location
             </button>
 
-            <a
+            {/* <a
               href="/signin"
               className="text-decoration-none text-dark fw-semibold"
-            >
-              <i className="bi bi-person-fill me-1"></i>
-              Login
-            </a>
+            /> */}
+            {user ? (
+              <Link 
+                to="/dashboard" 
+                className="text-decoration-none text-dark fw-semibold">
+                <i className="bi bi-person-circle me-1"></i>
+                {user.fullName}
+              </Link>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => setShowModal(true)}
+              >
+                <i className="bi bi-person-fill me-1"></i>
+                Login
+              </button>
+            )}
+
 
             <Link
               to="/cart"
@@ -129,7 +149,22 @@ export function Navbar() {
       </div>
       <div className="offcanvas offcanvas-start" tabIndex="-1" id="mobileMenu">
         <div className="offcanvas-header">
-          <a className="bi bi-person offcanvas-title text-decoration-none " href="/signin"> Login</a>
+          {user ? (
+              <Link 
+                to="/dashboard" 
+                className="text-decoration-none text-dark fw-semibold">
+                <i className="bi bi-person-circle me-1"></i>
+                {user.fullName}
+              </Link>
+            ) : (
+              <p
+                className="fw-semibold fs-5 text-muted"
+                onClick={() => setShowModal(true)}
+              >
+                <i className="bi bi-person-fill me-1"></i>
+                Login
+              </p>
+            )}
 
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
@@ -206,9 +241,34 @@ export function Navbar() {
               <a target="_blank" href="https://www.linkedin.com/company/nurserylive/" className="bi bi-linkedin text-secondary"></a>
             </div>
           </div>
-          
+
         </div>
       </div>
+      {showModal && (
+        <div
+          className="modal fade show d-block"
+          style={{backgroundColor:"rgba(0,0,0,0.5)"}}>
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Sign In</h5>
+                  <button 
+                    type="button" 
+                    className="btn-close"
+                    onClick={()=>setShowModal(false)}></button>
+                </div>
+                <div className="modal-body">
+                  <SignInForm 
+                    onSuccess={(loggedUser)=>{
+                      setUser(loggedUser);
+                      setShowModal(false);
+                    }} />
+                </div>
+              </div>
+            </div>
+
+        </div>
+      )}
     </nav>
   )
 }
