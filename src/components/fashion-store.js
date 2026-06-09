@@ -16,6 +16,7 @@ export function FashionStore() {
   const { searchTerm } = useContext(SearchContext);
   const [priceRange, setPriceRange] = useState([500, 100000]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [sortOrder,setSortOrder] = useState("");
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
@@ -37,7 +38,7 @@ export function FashionStore() {
   }, []);
 
   const filteredProducts = products.filter(product => {
-    const productPriceInr=product.price * 85;
+    const productPriceInr = product.price * 85;
     const matchesSearch = product.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
@@ -52,13 +53,21 @@ export function FashionStore() {
 
     const categoryMatch =
       selectedCategories.length === 0 || selectedCategories.includes(product.category);
-        
+
     return (
       matchesSearch &&
       minMatch &&
       maxMatch &&
       categoryMatch
     );
+  }).sort((a,b)=>{
+    if(sortOrder === "lowToHigh"){
+      return a.price - b.price;
+    }
+    if(sortOrder === "highToLow"){
+      return b.price - a.price;
+    }
+    return 0;
   });
 
   return (
@@ -88,7 +97,19 @@ export function FashionStore() {
                 min={500}
                 max={100000}
                 value={priceRange}
-                onChange={(value) => setPriceRange(value)} />
+                onChange={(value) => setPriceRange(value)}
+                trackStyle={[{ backgroundColor: "#198754" }]}
+                railStyle={{ backgroundColor: "#dee2e6" }}
+                handleStyle={[
+                  {
+                    borderColor: "#198754",
+                    backgroundColor: "#198754",
+                  },
+                  {
+                    borderColor: "#198754",
+                    backgroundColor: "#198754",
+                  },
+                ]} />
               <div className="row mt-4">
                 <div className="col-6">
                   <label className="form-label">Minimum</label>
@@ -184,6 +205,27 @@ export function FashionStore() {
           </div>
 
           <div className="col-md-9 ">
+
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h6 className="mb-0">
+                Showing {filteredProducts.length} result{filteredProducts.length !== 1 ? "s" : ""}
+              </h6>
+              <div className="ms-auto">
+                <div className="d-flex align-items-center">
+                  <label className="fw-semibold me-2">Sort by:</label>
+                  <select 
+                    className="form-select"
+                    style={{width:"200px"}}
+                    value={sortOrder}
+                    onChange={(e)=>setSortOrder(e.target.value)}>
+                      <option value="">Default</option>
+                      <option value="lowToHigh">Price:Low to High</option>
+                      <option value="highToLow">Price:High to Low</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+
             <div className="row">
               {
                 filteredProducts.map(product =>

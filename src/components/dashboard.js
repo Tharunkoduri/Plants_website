@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Header } from "./header";
+import { Navbar } from "./navbar";
+import { Footer } from "./footer";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -25,14 +28,16 @@ export function Dashboard() {
   };
 
   return (
+    <div>
+      <Header />
+      <Navbar />
     <div className="container mt-4  min-vh-100">
       <div className="row">
 
-        <div className="col-md-3 rounded-3  shadow-sm p-0">
+        <div className="col-md-3 rounded-3  shadow p-0">
           <div
             className=" rounded-3 p-2 text-white"
-            style={{ background: "#6f7331" }}
-          >
+            style={{ background: "#6f7331" }} >
             <h4>Hi, {user?.fullName}</h4>
           </div>
 
@@ -195,18 +200,16 @@ export function Dashboard() {
                     }
                   />
                 </div>
-
               </div>
 
-              <button className="btn btn-success mt-4">
-                Save Changes
-              </button>
+              <button className="btn btn-success mt-4">Save Changes</button>
 
             </div>
           </div>
         </div>
-
       </div>
     </div>
-  );
+    <Footer />
+    </div>
+  ); 
 }
