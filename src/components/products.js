@@ -7,7 +7,8 @@ import { SearchContext } from "../context/search-context";
 
 export function Products() {
   const { addToCart } = useContext(CartContext);
-  const { searchTerm } = useContext(SearchContext);
+  const { searchTerm,setAllProducts } = useContext(SearchContext);
+ 
   const products = [
     {
       img: 'https://nurserylive.com/cdn/shop/files/predict-3dfb876f-1478-4d4e-96dc-34c04c771ced-1_689x689.webp',
@@ -16,7 +17,8 @@ export function Products() {
       original: 947,
       discount: 20,
       rating: 4,
-      reviews: 155
+      reviews: 155,
+      id:1
     },
     {
       img: 'https://nurserylive.com/cdn/shop/files/predict-657653ae-9a52-4359-b1a1-b10bc756f3ac-1_1024x1024.webp',
@@ -25,7 +27,8 @@ export function Products() {
       original: 748,
       discount: 20,
       rating: 4.5,
-      reviews: 19
+      reviews: 19,
+      id:2
     },
     {
       img: 'https://nurserylive.com/cdn/shop/files/temp_JTmS3q7_600x600.jpg',
@@ -34,7 +37,8 @@ export function Products() {
       original: 1507,
       discount: 25,
       rating: 4,
-      reviews: 54
+      reviews: 54,
+      id:3
     },
     {
       img: 'https://nurserylive.com/cdn/shop/files/temp_JTmS3q7_600x600.jpg',
@@ -43,7 +47,8 @@ export function Products() {
       original: 1225,
       discount: 20,
       rating: 4,
-      reviews: 31
+      reviews: 31,
+      id:4
     },
     {
       img: 'https://nurserylive.com/cdn/shop/files/nurserylive-combo-packs-plants-top-5-plants-for-decoration-on-auspicious-occasion_600x600.jpg',
@@ -52,7 +57,8 @@ export function Products() {
       original: 1765,
       discount: 30,
       rating: 4,
-      reviews: 36
+      reviews: 36,
+      id:5
     },
     {
       img: 'https://nurserylive.com/cdn/shop/products/nurserylive-g-tulip-random-color-bulbs-681697_362x362.jpg',
@@ -61,7 +67,8 @@ export function Products() {
       original: 599,
       discount: 25,
       rating: 4,
-      reviews: 88
+      reviews: 88,
+      id:6
     },
     {
       img: 'https://nurserylive.com/cdn/shop/products/nurserylive-gardening-accessories-2ft-coir-pole-254594_600x600.jpg',
@@ -70,7 +77,8 @@ export function Products() {
       original: 1999,
       discount: 25,
       rating: 5,
-      reviews: 212
+      reviews: 212,
+      id:7
     },
     {
       img: 'https://nurserylive.com/cdn/shop/files/ChatGPTImageJul24_2025_10_02_11PM_869x869.jpg',
@@ -79,14 +87,12 @@ export function Products() {
       original: 1199,
       discount: 25,
       rating: 4,
-      reviews: 67
+      reviews: 67,
+      id:8
     }
   ];
 
-  const filteredProducts = products.filter((product) => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
-
-
-
+  
   const perSlide =
     window.innerWidth < 576
       ? 1
@@ -97,8 +103,8 @@ export function Products() {
           : 4
 
   const slides = [];
-  for (let i = 0; i < filteredProducts.length; i += perSlide) {
-    slides.push(filteredProducts.slice(i, i + perSlide));
+  for (let i = 0; i < products.length; i += perSlide) {
+    slides.push(products.slice(i, i + perSlide));
   }
 
   const renderStars = (n) => {

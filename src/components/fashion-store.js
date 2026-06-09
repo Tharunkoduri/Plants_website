@@ -13,10 +13,10 @@ export function FashionStore() {
 
   const [products, setProducts] = useState([]);
   const { addToCart } = useContext(CartContext);
-  const { searchTerm } = useContext(SearchContext);
+  const { searchTerm,setAllProducts } = useContext(SearchContext);
   const [priceRange, setPriceRange] = useState([500, 100000]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [sortOrder,setSortOrder] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
@@ -28,9 +28,10 @@ export function FashionStore() {
 
   function LoadProducts() {
     axios.get("https://fakestoreapi.com/products")
-      .then(response =>
-        setProducts(response.data)
-      );
+      .then(response =>{
+        setProducts(response.data);
+        setAllProducts(prev => [...prev, ...response.data]);
+      });
   }
 
   useEffect(() => {
@@ -60,11 +61,11 @@ export function FashionStore() {
       maxMatch &&
       categoryMatch
     );
-  }).sort((a,b)=>{
-    if(sortOrder === "lowToHigh"){
+  }).sort((a, b) => {
+    if (sortOrder === "lowToHigh") {
       return a.price - b.price;
     }
-    if(sortOrder === "highToLow"){
+    if (sortOrder === "highToLow") {
       return b.price - a.price;
     }
     return 0;
@@ -140,7 +141,6 @@ export function FashionStore() {
               </div>
               <div className="mt-4">
                 <h6 className="mb-3">Categories</h6>
-
                 <div className="form-check mb-2">
                   <input
                     className="form-check-input"
@@ -213,22 +213,22 @@ export function FashionStore() {
               <div className="ms-auto">
                 <div className="d-flex align-items-center">
                   <label className="fw-semibold me-2">Sort by:</label>
-                  <select 
+                  <select
                     className="form-select"
-                    style={{width:"200px"}}
+                    style={{ width: "200px" }}
                     value={sortOrder}
-                    onChange={(e)=>setSortOrder(e.target.value)}>
-                      <option value="">Default</option>
-                      <option value="lowToHigh">Price:Low to High</option>
-                      <option value="highToLow">Price:High to Low</option>
-                    </select>
+                    onChange={(e) => setSortOrder(e.target.value)}>
+                    <option value="">Default</option>
+                    <option value="lowToHigh">Price:Low to High</option>
+                    <option value="highToLow">Price:High to Low</option>
+                  </select>
                 </div>
               </div>
             </div>
 
             <div className="row">
-              {
-                filteredProducts.map(product =>
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((product) => (
                   <div
                     className="col-6 col-md-4 col-lg-3 mb-4"
                     key={product.id} >
@@ -270,7 +270,15 @@ export function FashionStore() {
                       </button>
                     </div>
                   </div>
-                )}
+                ))
+              ) : (
+                <div className="col-12 border rounded text-center py-5">
+                  <h5 className="fw-bold">No Results Found</h5>
+                  <p className="text-secondary">
+                    Try adjusting your search or price range.
+                  </p>
+                </div>)
+              }
             </div>
           </div>
 

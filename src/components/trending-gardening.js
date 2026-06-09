@@ -15,12 +15,15 @@ export function TrendingGardening() {
   const [sortOrder,setSortOrder] = useState("");
 
   const { addToCart } = useContext(CartContext);
-  const { searchTerm } = useContext(SearchContext);
+  const { searchTerm,setAllProducts } = useContext(SearchContext);
 
   function LoadProducts() {
     fetch("/db.json")
       .then(res => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data);
+  
+      });
   }
 
   useEffect(() => {
@@ -208,9 +211,9 @@ export function TrendingGardening() {
                 ))
               ) : (
                 <div className="col-12 border rounded text-center py-5">
-                  <h5 className="fw-bold">No products found</h5>
+                  <h5 className="fw-bold">No Results Found</h5>
                   <p className="text-secondary">
-                    Try adjusting your  price range.
+                    Try adjusting your search or price range.
                   </p>
                 </div>
               )}

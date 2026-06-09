@@ -79,16 +79,16 @@ body{
   }
 
   .input-group{
-    width: 100%;
+    width: 100% !important;
   }
 
   .input-group .form-control{
-    height: 55px;
-    font-size: 14px;
+    height: 55px !important;
+    font-size: 14px !important;
   }
 
   .input-group .btn{
-    width: 70px;
+    width: 70px !important;
   }
 
   .location-btn{
@@ -124,21 +124,21 @@ body{
   }
 
   .input-group .form-control{
-  height:50px;
-  border-right:none;
+  height:50px !important;
+  border-right:none !important;
 }
 
 .input-group .btn{
-  height:50px;
-  width:85px;
-  border-top-left-radius:0;
-  border-bottom-left-radius:0;
+  height:50px !important;
+  width:85px !important;
+  border-top-left-radius:0 !important;
+  border-bottom-left-radius:0 !important;
 }
   
 }
 
 @media(max-width:400px){
-  .caro-img{
+  .card-img{
     height: 150px;
   }
 }

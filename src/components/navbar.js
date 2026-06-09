@@ -2,20 +2,24 @@ import { menuData } from "./data";
 import { useContext, useState } from "react";
 import "../styles/home.css";
 import { CartContext } from "../context/cart-context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/search-context";
 import { SignInForm } from "./SignInForm";
 
 export function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [openSubMenu, setOpenSubMenu] = useState(null);
-  const { searchTerm, setSearchTerm } = useContext(SearchContext);
+  const [suggestions, setSuggestions] = useState([]);
+  const { searchTerm, setSearchTerm, allProducts } = useContext(SearchContext);
   const { cart } = useContext(CartContext);
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("loggedInUser")));
 
+  const navigate = useNavigate();
 
-
+  console.log("searchTerm:", searchTerm);
+console.log("allProducts:", allProducts.length);
+console.log("suggestions:", suggestions);
   return (
     <nav className="bg-white shadow-sm ">
       <div className="container-fluid px-4 py-3">
@@ -33,19 +37,72 @@ export function Navbar() {
             <i className="bi bi-cart"></i>
           </Link>
 
-          <div className=" flex-grow-1 search-box">
+          <div className=" flex-grow-1 search-box " >
             <div className="input-group">
               <input
                 type="text"
                 className="form-control p-3 shadow-sm"
                 placeholder="What are you looking for?"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)} />
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setSearchTerm(value);
 
+                  if (value.trim()) {
+                    const filtered = allProducts.filter(product => product.title.toLowerCase().includes(value.toLowerCase()));
+                    setSuggestions(filtered.slice(0, 5));
+                  } else {
+                    setSuggestions([]);
+                  }
+                }} />
+                
+              {searchTerm && suggestions.length > 0 && (
+                <div
+                  className="position-absolute bg-white border shadow-sm w-100 rounded"
+                  style={{
+                    top: "100%",
+                    left: 0,
+                    zIndex: 1050,
+                    maxHeight: "300px",
+                    overflowY: "auto"
+                  }}
+                >
+                  {suggestions.map((product, index) => (
+                    <div
+                      key={index}
+                      className="d-flex align-items-center p-2 border-bottom suggestion-item"
+                      style={{ cursor: "pointer" }}
+                      onClick={()=>{
+                        navigate(`/search/${encodeURIComponent(product.title)}`);
+                        setSuggestions([]);
+                        setSearchTerm("");
+                      }}
+                    >
+                      <img
+                        src={product.img || product.image}
+                        alt={product.title}
+                        width="50"
+                        height="50"
+                        className="me-3"
+                      />
+
+                      <div>
+                        <div className="fw-semibold">
+                          {product.title}
+                        </div>
+
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
               <button className="btn btn-danger shadow-sm px-4">
                 <i className="bi bi-search text-white"></i>
               </button>
             </div>
+
+
+              
           </div>
 
 
@@ -61,8 +118,8 @@ export function Navbar() {
               className="text-decoration-none text-dark fw-semibold"
             /> */}
             {user ? (
-              <Link 
-                to="/dashboard" 
+              <Link
+                to="/dashboard"
                 className="text-decoration-none text-dark fw-semibold">
                 <i className="bi bi-person-circle me-1"></i>
                 {user.fullName}
@@ -150,21 +207,21 @@ export function Navbar() {
       <div className="offcanvas offcanvas-start" tabIndex="-1" id="mobileMenu">
         <div className="offcanvas-header">
           {user ? (
-              <Link 
-                to="/dashboard" 
-                className="text-decoration-none text-dark fw-semibold">
-                <i className="bi bi-person-circle me-1"></i>
-                {user.fullName}
-              </Link>
-            ) : (
-              <p
-                className="fw-semibold fs-5 text-muted"
-                onClick={() => setShowModal(true)}
-              >
-                <i className="bi bi-person-fill me-1"></i>
-                Login
-              </p>
-            )}
+            <Link
+              to="/dashboard"
+              className="text-decoration-none text-dark fw-semibold">
+              <i className="bi bi-person-circle me-1"></i>
+              {user.fullName}
+            </Link>
+          ) : (
+            <p
+              className="fw-semibold fs-5 text-muted"
+              onClick={() => setShowModal(true)}
+            >
+              <i className="bi bi-person-fill me-1"></i>
+              Login
+            </p>
+          )}
 
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
@@ -247,25 +304,25 @@ export function Navbar() {
       {showModal && (
         <div
           className="modal fade show d-block"
-          style={{backgroundColor:"rgba(0,0,0,0.5)"}}>
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">Sign In</h5>
-                  <button 
-                    type="button" 
-                    className="btn-close"
-                    onClick={()=>setShowModal(false)}></button>
-                </div>
-                <div className="modal-body">
-                  <SignInForm 
-                    onSuccess={(loggedUser)=>{
-                      setUser(loggedUser);
-                      setShowModal(false);
-                    }} />
-                </div>
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Sign In</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setShowModal(false)}></button>
+              </div>
+              <div className="modal-body">
+                <SignInForm
+                  onSuccess={(loggedUser) => {
+                    setUser(loggedUser);
+                    setShowModal(false);
+                  }} />
               </div>
             </div>
+          </div>
 
         </div>
       )}

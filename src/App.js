@@ -8,6 +8,7 @@ import { TrendingGardening } from "./components/trending-gardening";
 import { Cart } from "./components/cart";
 import BlogPage from "./components/blogs";
 import { Dashboard } from "./components/dashboard";
+import { SearchResults } from "./components/SearchResults";
 
 function App(){
   return(
@@ -21,6 +22,7 @@ function App(){
     <Route path="/trendinggardening" element={< TrendingGardening />} />
     <Route path="/blogs" element={< BlogPage />} />
     <Route path="/dashboard" element={< Dashboard />} />
+    <Route path="/search/:title" element={< SearchResults/>} />
    </Routes>
   )
 }
