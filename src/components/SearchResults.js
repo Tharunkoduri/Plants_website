@@ -31,7 +31,14 @@ export function SearchResults() {
         Showing {results.length} result
         {results.length !== 1 ? "s" : ""}
       </p>
-
+      {results.length === 0 ? (
+        <div className="text-center py-5">
+          <h5>No Results Found</h5>
+          <p className="text-muted">
+            Try Searching With a new Keyword
+          </p>
+        </div>
+      ):(
       <div className="row">
         {results.map((product, index) => (
           <div className="col-md-3 mb-4" key={index}>
@@ -52,6 +59,7 @@ export function SearchResults() {
           </div>
         ))}
       </div>
+      )}
     </div>
     <Footer />
     </div>

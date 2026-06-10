@@ -10,23 +10,18 @@ export function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
 
   const totalItems = cart.reduce(
-    (sum, product) => sum + (product.quantity || 1),
-    0
-  );
+    (sum, product) => sum + (product.quantity || 1), 0 );
 
   const totalCost = cart.reduce(
-    (sum, product) => sum + (product.price * (product.quantity || 1)),
-    0
-  );
+    (sum, product) => sum + (product.price * (product.quantity || 1)), 0 );
 
   return (
     <div>
-      <ScrollBar />
       <Header />
       <Navbar />
       <div className="container px-2 px-md-5 ">
 
-        <h3 className="fw-bold text-secondary mb-3">Your Cart</h3>
+        <h3 className="fw-bold text-secondary mt-3 mb-3">Your Cart</h3>
 
         {cart.length === 0 ? (
           <div className="text-center border border-2 shadow-sm py-5">
@@ -104,8 +99,8 @@ export function Cart() {
                 </div>
               ))}
             </div>
-            <div className="col-12 gx-5  col-lg-4">
-
+      
+            <div className="col-12 gx-5 col-lg-4">
               <div className=" border  rounded-3 p-3 bg-white">
                 <h5 className="fw-bold mb-3">Order Summary</h5>
 
@@ -127,7 +122,6 @@ export function Cart() {
                 <div className="mt-4">
                   <button className="btn btn-primary w-100">Continue Shopping</button>
                 </div>
-
               </div>
             </div>
           </div>

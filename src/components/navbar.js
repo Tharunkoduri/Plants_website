@@ -65,8 +65,8 @@ console.log("suggestions:", suggestions);
                     zIndex: 1050,
                     maxHeight: "300px",
                     overflowY: "auto"
-                  }}
-                >
+                  }} >
+
                   {suggestions.map((product, index) => (
                     <div
                       key={index}
@@ -76,15 +76,13 @@ console.log("suggestions:", suggestions);
                         navigate(`/search/${encodeURIComponent(product.title)}`);
                         setSuggestions([]);
                         setSearchTerm("");
-                      }}
-                    >
+                      }} >
                       <img
                         src={product.img || product.image}
                         alt={product.title}
                         width="50"
                         height="50"
-                        className="me-3"
-                      />
+                        className="me-3" />
 
                       <div>
                         <div className="fw-semibold">
@@ -93,7 +91,6 @@ console.log("suggestions:", suggestions);
                         <div className="fw-semibold">
                           {product.price.toLocaleString('en-IN',{style:'currency' , currency:'INR'})}
                         </div>
-
                       </div>
                     </div>
                   ))}
@@ -102,13 +99,8 @@ console.log("suggestions:", suggestions);
               <button className="btn btn-danger shadow-sm px-4">
                 <i className="bi bi-search text-white"></i>
               </button>
-            </div>
-
-
-              
+            </div>              
           </div>
-
-
           <div className="d-none d-lg-flex align-items-center gap-4 px-3 px-md-4 py-2">
 
             <button className="btn border location rounded-pill me-3">
@@ -116,10 +108,6 @@ console.log("suggestions:", suggestions);
               Select Delivery Location
             </button>
 
-            {/* <a
-              href="/signin"
-              className="text-decoration-none text-dark fw-semibold"
-            /> */}
             {user ? (
               <Link
                 to="/dashboard"
@@ -130,8 +118,7 @@ console.log("suggestions:", suggestions);
             ) : (
               <button
                 className="btn btn-primary"
-                onClick={() => setShowModal(true)}
-              >
+                onClick={() => setShowModal(true)} >
                 <i className="bi bi-person-fill me-1"></i>
                 Login
               </button>
@@ -141,8 +128,8 @@ console.log("suggestions:", suggestions);
             <Link
               to="/cart"
               className="text-dark position-relative"
-              style={{ fontSize: "25px" }}
-            >
+              style={{ fontSize: "25px" }}>
+
               <span className="bi bi-cart"></span>
 
               {cart.length > 0 &&
@@ -157,9 +144,7 @@ console.log("suggestions:", suggestions);
                   {cart.length}
                 </span>
               }
-
             </Link>
-
           </div>
         </div>
       </div>
@@ -219,8 +204,7 @@ console.log("suggestions:", suggestions);
           ) : (
             <p
               className="fw-semibold fs-5 text-muted"
-              onClick={() => setShowModal(true)}
-            >
+              onClick={() => setShowModal(true)} >
               <i className="bi bi-person-fill me-1"></i>
               Login
             </p>
@@ -325,8 +309,7 @@ console.log("suggestions:", suggestions);
                   }} />
               </div>
             </div>
-          </div>
-
+          </div> 
         </div>
       )}
     </nav>
