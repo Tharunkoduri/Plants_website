@@ -57,10 +57,14 @@ export function Cart() {
                     <div className="col-12 col-md-5">
                       <h5 className="fw-semibold mb-2">{product.title}</h5>
                       <div className="mb-2">
+                        {product.original &&(
                         <span className="text-muted text-decoration-line-through me-2">
                           &#8377;{product.original}
                         </span>
-                        <span className="fw-semibold fs-6">&#8377;{product.price}</span>
+                        )}
+                        <span className="fw-semibold fs-6">
+                          {product.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}
+                        </span>
                       </div>
                     </div>
 
@@ -81,7 +85,12 @@ export function Cart() {
 
                     <div className="col-4 col-md-2 text-md-center">
                       <div className="small text-muted">Subtotal</div>
-                      <h5 className="mb-0">&#8377;{product.price * (product.quantity || 1)}</h5>
+                      <h5 className="mb-0">
+                        {(product.price * (product.quantity || 1)).toLocaleString("en-IN", {
+                          style: "currency",
+                          currency: "INR"
+                        })}
+                      </h5>
                     </div>
 
                     <div className="col-2 col-md-1 text-end">
@@ -107,7 +116,12 @@ export function Cart() {
 
                 <div className="mb-3">
                   <span className="text-muted">Total cost</span>
-                  <div className="fs-5 fw-bold">&#8377;{totalCost}</div>
+                  <div className="fs-5 fw-bold">
+                    {totalCost.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR"
+                    })}
+                  </div>
                 </div>
 
                 <div className="mt-4">

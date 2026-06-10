@@ -18,7 +18,8 @@ export function SearchProvider({ children }) {
   useEffect(()=>{
      axios.get("https://fakestoreapi.com/products")
       .then(response =>{
-        setAllProducts(prev => [...prev, ...response.data]);
+        const updatedProducts = response.data.map(product =>({...product,price:product.price * 85}));
+        setAllProducts(prev=>[...prev, ...updatedProducts]);
       }
       );
   },[])

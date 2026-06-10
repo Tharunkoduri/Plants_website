@@ -90,6 +90,9 @@ console.log("suggestions:", suggestions);
                         <div className="fw-semibold">
                           {product.title}
                         </div>
+                        <div className="fw-semibold">
+                          {product.price.toLocaleString('en-IN',{style:'currency' , currency:'INR'})}
+                        </div>
 
                       </div>
                     </div>

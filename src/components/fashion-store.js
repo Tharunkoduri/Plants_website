@@ -29,8 +29,9 @@ export function FashionStore() {
   function LoadProducts() {
     axios.get("https://fakestoreapi.com/products")
       .then(response =>{
-        setProducts(response.data);
-        setAllProducts(prev => [...prev, ...response.data]);
+        const updatedProducts = response.data.map(product =>({...product,price:Number(product.price) * 85}));
+        setProducts(updatedProducts);
+        setAllProducts(prev=>[...prev,...updatedProducts]);
       });
   }
 
@@ -39,7 +40,7 @@ export function FashionStore() {
   }, []);
 
   const filteredProducts = products.filter(product => {
-    const productPriceInr = product.price * 85;
+    const productPriceInr = product.price;
     const matchesSearch = product.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
@@ -253,7 +254,7 @@ export function FashionStore() {
                         </h6>
 
                         <div className="fw-bold  mb-1">
-                          {(product.price * 85).toLocaleString('en-IN', {
+                          {product.price .toLocaleString('en-IN', {
                             style: 'currency',
                             currency: 'INR'
                           })}
