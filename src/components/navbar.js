@@ -18,8 +18,8 @@ export function Navbar() {
   const navigate = useNavigate();
 
   console.log("searchTerm:", searchTerm);
-console.log("allProducts:", allProducts.length);
-console.log("suggestions:", suggestions);
+  console.log("allProducts:", allProducts.length);
+  console.log("suggestions:", suggestions);
   return (
     <nav className="bg-white shadow-sm ">
       <div className="container-fluid px-4 py-3">
@@ -55,7 +55,7 @@ console.log("suggestions:", suggestions);
                     setSuggestions([]);
                   }
                 }} />
-                
+
               {searchTerm && suggestions.length > 0 && (
                 <div
                   className="position-absolute bg-white border shadow-sm w-100 rounded"
@@ -72,7 +72,7 @@ console.log("suggestions:", suggestions);
                       key={index}
                       className="d-flex align-items-center p-2 border-bottom suggestion-item"
                       style={{ cursor: "pointer" }}
-                      onClick={()=>{
+                      onClick={() => {
                         navigate(`/search/${encodeURIComponent(product.title)}`);
                         setSuggestions([]);
                         setSearchTerm("");
@@ -89,7 +89,7 @@ console.log("suggestions:", suggestions);
                           {product.title}
                         </div>
                         <div className="fw-semibold">
-                          {product.price.toLocaleString('en-IN',{style:'currency' , currency:'INR'})}
+                          {product.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}
                         </div>
                       </div>
                     </div>
@@ -99,7 +99,7 @@ console.log("suggestions:", suggestions);
               <button className="btn btn-danger shadow-sm px-4">
                 <i className="bi bi-search text-white"></i>
               </button>
-            </div>              
+            </div>
           </div>
           <div className="d-none d-lg-flex align-items-center gap-4 px-3 px-md-4 py-2">
 
@@ -309,7 +309,7 @@ console.log("suggestions:", suggestions);
                   }} />
               </div>
             </div>
-          </div> 
+          </div>
         </div>
       )}
     </nav>

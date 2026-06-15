@@ -10,10 +10,10 @@ export function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
 
   const totalItems = cart.reduce(
-    (sum, product) => sum + (product.quantity || 1), 0 );
+    (sum, product) => sum + (product.quantity || 1), 0);
 
   const totalCost = cart.reduce(
-    (sum, product) => sum + (product.price * (product.quantity || 1)), 0 );
+    (sum, product) => sum + (product.price * (product.quantity || 1)), 0);
 
   return (
     <div>
@@ -52,10 +52,10 @@ export function Cart() {
                     <div className="col-12 col-md-5">
                       <h5 className="fw-semibold mb-2">{product.title}</h5>
                       <div className="mb-2">
-                        {product.original &&(
-                        <span className="text-muted text-decoration-line-through me-2">
-                          &#8377;{product.original}
-                        </span>
+                        {product.original && (
+                          <span className="text-muted text-decoration-line-through me-2">
+                            &#8377;{product.original}
+                          </span>
                         )}
                         <span className="fw-semibold fs-6">
                           {product.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}
@@ -99,7 +99,7 @@ export function Cart() {
                 </div>
               ))}
             </div>
-      
+
             <div className="col-12 gx-5 col-lg-4">
               <div className=" border  rounded-3 p-3 bg-white">
                 <h5 className="fw-bold mb-3">Order Summary</h5>

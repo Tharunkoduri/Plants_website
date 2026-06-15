@@ -12,17 +12,17 @@ import { SearchContext } from "../context/search-context";
 export function TrendingGardening() {
   const [products, setProducts] = useState([]);
   const [priceRange, setPriceRange] = useState([200, 5000]);
-  const [sortOrder,setSortOrder] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   const { addToCart } = useContext(CartContext);
-  const { searchTerm,setAllProducts } = useContext(SearchContext);
+  const { searchTerm, setAllProducts } = useContext(SearchContext);
 
   function LoadProducts() {
     fetch("/db.json")
       .then(res => res.json())
       .then((data) => {
         setProducts(data);
-  
+
       });
   }
 
@@ -44,11 +44,11 @@ export function TrendingGardening() {
       product.price <= Number(priceRange[1]);
 
     return matchesSearch && minMatch && maxMatch;
-  }).sort((a,b)=>{
-    if(sortOrder === "lowToHigh"){
+  }).sort((a, b) => {
+    if (sortOrder === "lowToHigh") {
       return a.price - b.price;
     }
-    if(sortOrder === "highToLow"){
+    if (sortOrder === "highToLow") {
       return b.price - a.price;
     }
     return 0;
@@ -98,7 +98,7 @@ export function TrendingGardening() {
               <div className="row mt-4">
                 <div className="col-6">
                   <label className="form-label">Minimum</label>
-                
+
                   <input
                     type="number"
                     className="form-control"
@@ -133,22 +133,22 @@ export function TrendingGardening() {
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h6 className="mb-0">
                 Showing {filteredProducts.length} result{filteredProducts.length !== 1 ? "s" : ""}
-              </h6>   
+              </h6>
 
-            <div className="ms-auto">
-            <div className="d-flex align-items-center">
-              <label className="me-2 fw-semibold">Sort by:</label>
-              <select 
-                className="form-select"
-                style={{width:"200px"}}
-                value={sortOrder}
-                onChange={(e)=>setSortOrder(e.target.value)} >
-                  <option value="">Default</option>
-                  <option value="lowToHigh">Price:Low to High</option>
-                  <option value="highToLow">Price:High to Low</option>
-                </select>
-            </div>
-            </div>
+              <div className="ms-auto">
+                <div className="d-flex align-items-center">
+                  <label className="me-2 fw-semibold">Sort by:</label>
+                  <select
+                    className="form-select"
+                    style={{ width: "200px" }}
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value)} >
+                    <option value="">Default</option>
+                    <option value="lowToHigh">Price:Low to High</option>
+                    <option value="highToLow">Price:High to Low</option>
+                  </select>
+                </div>
+              </div>
             </div>
 
 

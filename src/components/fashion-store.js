@@ -13,7 +13,7 @@ export function FashionStore() {
 
   const [products, setProducts] = useState([]);
   const { addToCart } = useContext(CartContext);
-  const { searchTerm,setAllProducts } = useContext(SearchContext);
+  const { searchTerm, setAllProducts } = useContext(SearchContext);
   const [priceRange, setPriceRange] = useState([500, 100000]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
@@ -28,10 +28,10 @@ export function FashionStore() {
 
   function LoadProducts() {
     axios.get("https://fakestoreapi.com/products")
-      .then(response =>{
-        const updatedProducts = response.data.map(product =>({...product,price:Number(product.price) * 85}));
+      .then(response => {
+        const updatedProducts = response.data.map(product => ({ ...product, price: Number(product.price) * 85 }));
         setProducts(updatedProducts);
-        setAllProducts(prev=>[...prev,...updatedProducts]);
+        setAllProducts(prev => [...prev, ...updatedProducts]);
       });
   }
 
@@ -254,7 +254,7 @@ export function FashionStore() {
                         </h6>
 
                         <div className="fw-bold  mb-1">
-                          {product.price .toLocaleString('en-IN', {
+                          {product.price.toLocaleString('en-IN', {
                             style: 'currency',
                             currency: 'INR'
                           })}

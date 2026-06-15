@@ -5,7 +5,7 @@ export const SearchContext = createContext();
 
 export function SearchProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [allProducts,setAllProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
     fetch("/db.json")
@@ -15,14 +15,14 @@ export function SearchProvider({ children }) {
       });
   }, []);
 
-  useEffect(()=>{
-     axios.get("https://fakestoreapi.com/products")
-      .then(response =>{
-        const updatedProducts = response.data.map(product =>({...product,price:product.price * 85}));
-        setAllProducts(prev=>[...prev, ...updatedProducts]);
+  useEffect(() => {
+    axios.get("https://fakestoreapi.com/products")
+      .then(response => {
+        const updatedProducts = response.data.map(product => ({ ...product, price: product.price * 85 }));
+        setAllProducts(prev => [...prev, ...updatedProducts]);
       }
       );
-  },[])
+  }, [])
 
   return (
     <SearchContext.Provider value={{ searchTerm, setSearchTerm, allProducts, setAllProducts }}>
